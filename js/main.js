@@ -9,6 +9,14 @@ function getEmails() {
     let temp = TextAreaOne.value;
     let expression = /([A-Za-z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi; //regular expression for extracting emails
     let mails = temp.match(expression);
-    counter.innerText = mails.length + " emails found";
-    TextAreaTwo.innerText = mails; //outputting emails
+    let holder = [];
+    //checking for duplicate mails
+    for (let i = 0; i < mails.length; i++) {
+        if (holder.indexOf(mails[i]) == -1) {
+            holder.push(mails[i]);
+        }
+    }
+
+    counter.innerText = holder.length + " emails found";
+    TextAreaTwo.innerText = holder; //outputting emails
 }
